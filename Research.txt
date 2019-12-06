@@ -1,1 +1,3 @@
 Firebase information: https://firebase.google.com/docs/projects/api/workflow_set-up-and-manage-project?authuser=0
+
+NoSql database structuring: https://www.dataversity.net/how-to-design-schema-for-your-nosql-database/
