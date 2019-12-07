@@ -1,3 +1,5 @@
 Firebase information: https://firebase.google.com/docs/projects/api/workflow_set-up-and-manage-project?authuser=0
 
 NoSql database structuring: https://www.dataversity.net/how-to-design-schema-for-your-nosql-database/
+
+React with MVC in ASP.NETCore: https://medium.com/@mirela95/asp-net-core-2-0-mvc-with-reactjs-net-basic-setup-and-example-template-4811b10b114a
