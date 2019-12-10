@@ -5,3 +5,5 @@ NoSql database structuring: https://www.dataversity.net/how-to-design-schema-for
 React with MVC in ASP.NETCore: https://medium.com/@mirela95/asp-net-core-2-0-mvc-with-reactjs-net-basic-setup-and-example-template-4811b10b114a
 
 React Lazy Loading: https://code-maze.com/react-net-core-lazy-loading/
+
+Use WordPress backend with React frontend: https://www.smashingmagazine.com/2018/03/react-wordpress-web-app/
