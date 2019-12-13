@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {Collapse} from 'reactstrap'
+import {Collapse} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function Card(props){
     const [open, toggleOpen] = useState(false);
@@ -19,7 +20,7 @@ function Card(props){
                         <div>
                             {props.links.map((linkProp, index) => {
                                 return (
-                                    <a className="card-link" href={linkProp.link} key={index}>{linkProp.name}</a>
+                                    <Link to={linkProp.link} key={index}>{linkProp.name}</Link>
                                 )
                             })}
                         </div>
