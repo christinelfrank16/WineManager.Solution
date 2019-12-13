@@ -1,7 +1,7 @@
 #home {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 90vw;
 }
 @media (max-width: 768px) {
