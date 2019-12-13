@@ -19,14 +19,14 @@ namespace WineManager.Controllers
 
         // GET api/wine
         [HttpGet]
-        public ActionResult<IEnumerable<Location>> Get()
+        public ActionResult<IEnumerable<WineItem>> Get()
         {
             return _db.WineItems.ToList();
         }
 
-        // GET api/locations/3
-        [HttpGet("{locationId:int}")]
-        public ActionResult<Location> Get(int wineItemId)
+        // GET api/wine/3
+        [HttpGet("{wineItemId:int}")]
+        public ActionResult<WineItem> Get(int wineItemId)
         {
             return _db.WineItems.FirstOrDefault(wineItem => wineItem.WineItemId == wineItemId);
         }
