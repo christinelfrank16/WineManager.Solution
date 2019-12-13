@@ -18,12 +18,16 @@ const store = configureStore(history, initialState);
 
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
-  rootElement);
+const render = (Component) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Component />
+      </ConnectedRouter>
+    </Provider>,
+    rootElement);
+}
+
+render(App);
 
 registerServiceWorker();
