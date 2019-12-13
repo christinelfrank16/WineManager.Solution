@@ -1,0 +1,11 @@
+#card-wrap {
+  display: inline-block;
+  width: 22vw;
+  margin: 2vmin;
+}
+@media (max-width: 768px) {
+  #card-wrap {
+    display: block;
+    width: 70vw;
+  }
+}

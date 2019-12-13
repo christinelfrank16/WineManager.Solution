@@ -1,0 +1,11 @@
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+}
+@media (max-width: 768px) {
+  #home {
+    flex-flow: column
+  }
+}

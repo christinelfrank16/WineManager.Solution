@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import useBreakpoints from './hooks/ViewportSize';
 import Card from './Card';
+import './Home.css';
 
 function Home(props){
-  const queries = {
-    xs: '(max-width: 320px)', //query for xs devices
-    sm: '(max-width: 720px)',
-    md: '(max-width: 1024px)'
-  }
-  const point = useBreakpoints(queries);
+  
   return(
-    <div >
+    <div id='home'>
 
         <Card title='Favorites' links={[{ name: 'Go', link: '/favorites' }]} />
 
