@@ -7,6 +7,7 @@ namespace WineManager.Models
         public string Description { get; set; }
         public string Vintner { get; set; }
         public string Varietal { get; set; }
+        public int Vintage { get; set; }
         public string Origin { get; set; }
         public int Rating { get; set; }
         public int Score { get; set; }
