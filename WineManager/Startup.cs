@@ -27,7 +27,7 @@ namespace WineManager.Solution
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WineManagerContext>(opt =>
-                opt.UseMySql(System.Environment.GetEnvironmentVariable("DefaultConnection")));
+                opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
