@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLocation } from './../actions/location-actions';
+import { addLocation } from '../actions/location-list-actions';
 
 
 function NewLocationForm(props){

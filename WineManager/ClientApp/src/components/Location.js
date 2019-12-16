@@ -1,23 +1,31 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../store/Counter';
+import { getLocationById } from './../actions/active-location-actions';
 
-const Location = props => (
-    <div>
-        <h1>Counter</h1>
 
-        <p>This is a simple example of a React component.</p>
-
-        <p>Current count: <strong>{props.count}</strong></p>
-
-        <button className="btn btn-primary" onClick={props.increment}>Increment</button>
-    </div>
-);
+class Location extends React.Component {
+    componentDidMount(){
+        const { dispatch } = this.props;
+        dispatch(getLocationById(this.props.locationId));
+    }
+    render(){
+        return(
+            <div>
+                <h1>{this.props.activeLocation.name}</h1>
+        
+                <p>This is a simple example of a React component.</p>
+        
+                <p>Current count: <strong>{this.props.count}</strong></p>
+        
+                <button className="btn btn-primary" onClick={this.props.increment}>Increment</button>
+            </div>
+        )
+    }
+}
 
 const mapStateToProps = state => {
     return {
-        slots: state.slots
+        activeLocation: state.activeLocation
     }
 }
 
