@@ -8,8 +8,12 @@ import NewLocationForm from './NewLocationForm';
 import './Home.css';
 
 function Home(props){
-  function handleNewLocationClick(){
-    $('#confirm').modal('show');
+  function handleNewLocationClick(showModal){
+    if(showModal){
+      $('#confirm').modal('show');
+    } else {
+      $('#confirm').modal('hide');
+    }
   }
   return(
     <div id='home'>
@@ -19,7 +23,7 @@ function Home(props){
         <Card title='Profile' links={[{ name: 'Go', link: '/profile' }]} />
         
         <Card title='Locations' buttonName='Add Location' onButtonClick={handleNewLocationClick} links={[{name: 'test location 1', link: '/locations/1'}]}/>
-        <Modal title='Add New Location' content={<NewLocationForm/>}/>
+        <Modal title='Add New Location' content={<NewLocationForm handleNewLocationSubmit={handleNewLocationClick}/>} />
 
     </div>
   )

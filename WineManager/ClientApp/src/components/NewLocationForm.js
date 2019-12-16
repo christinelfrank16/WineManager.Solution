@@ -12,6 +12,10 @@ function NewLocationForm(props){
         const { dispatch } = props;
         event.preventDefault();
         dispatch(addLocation({Name: _name.value, XSlotCount: _xDim.value, YSlotCount: _yDim.value}));
+        _name.value = '';
+        _xDim.value = '';
+        _yDim.value = '';
+        props.handleNewLocationSubmit(false);
     }
     const buttonStyle = {
         textAlign: 'center'

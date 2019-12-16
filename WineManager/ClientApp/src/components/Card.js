@@ -12,7 +12,7 @@ function Card(props){
         } else {
             return (
                 <div>
-                    <button type='botton' className='btn btn-primary' onClick={props.onButtonClick}>{props.buttonName}</button>
+                    <button type='botton' className='btn btn-primary' onClick={() => props.onButtonClick(true)}>{props.buttonName}</button>
                 </div>
             )
         }
