@@ -6,7 +6,14 @@ export default (state = [], action) => {
 
     switch(action.type){
         case c.ADD_LOCATION:
-            newState = state.slice().push(action.newLocation);
+            console.log(state, action.newLocation);
+            newState = state.slice();
+            newState.push(action.newLocation);
+            console.log(newState);
+            return newState;
+
+        case c.GET_LOCATIONS:
+            newState = action.jsonLocationData;
             return newState;
         
         default:

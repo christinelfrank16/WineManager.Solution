@@ -24,9 +24,11 @@ function Card(props){
                     <h5 className="card-title">{props.title}</h5>
                     <Collapse isOpen={open}>
                         <div>
-                            {props.links.map((linkProp, index) => {
+                            {props.links.map((linkProp) => {
                                 return (
-                                    <Link to={linkProp.link} key={index}>{linkProp.name}</Link>
+                                    <div key={linkProp.id}>
+                                        <Link to={linkProp.link}>{linkProp.name}</Link>
+                                    </div>
                                     )
                             })}
                             {renderButton()}
