@@ -31,9 +31,11 @@ namespace WineManager.Controllers
             return _db.Locations.FirstOrDefault(location => location.LocationId == locationId);
         }
 
+        // POST api/locations
         [HttpPost]
         public ActionResult<Location> Post([FromBody] Location location)
         {   
+            Console.WriteLine("test location", location);
             _db.Locations.Add(location);
             _db.SaveChanges();
             return location;
