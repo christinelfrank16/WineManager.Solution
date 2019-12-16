@@ -3,16 +3,16 @@ import { Route } from 'react-router';
 import { connect } from 'react-redux';
 import Layout from './components/Layout';
 import Home from './components/Home';
-import Counter from './components/Counter';
+import Location from './components/Location';
 import FetchData from './components/FetchData';
-import { getLocations } from './actions/location-actions';
+import { getLocations } from './actions/location-list-actions';
 
 
 class App extends React.Component{
 
   componentDidMount(){
     const { dispatch } = this.props;
-    dispatch(getLocations()).then(() => console.log(this.props));
+    dispatch(getLocations());
   }
 
   render(){

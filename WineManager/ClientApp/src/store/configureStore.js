@@ -1,11 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
-import locationReducer from './../reducers/location-reducer';
+import locationReducer from './../reducers/location-list-reducer';
+import activeLocationReducer from '../reducers/active-location-reducer';
 
 export default function configureStore (history, initialState) {
   const reducers = {
-    locations: locationReducer
+    locations: locationReducer,
+    activeLocation: activeLocationReducer
   };
 
   const middleware = [
