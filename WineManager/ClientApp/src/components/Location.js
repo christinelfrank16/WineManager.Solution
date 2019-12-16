@@ -15,7 +15,10 @@ const Location = props => (
     </div>
 );
 
-export default connect(
-    state => state.counter,
-    dispatch => bindActionCreators(actionCreators, dispatch)
-)(Location);
+const mapStateToProps = state => {
+    return {
+        slots: state.slots
+    }
+}
+
+export default connect(mapStateToProps)(Location);

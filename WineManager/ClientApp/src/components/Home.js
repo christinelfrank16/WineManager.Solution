@@ -15,7 +15,6 @@ function Home(props){
     }
   }
   function makeLocationLinks(){
-    console.log(props.locations);
     let locationLinks = [];
     if(props.locations && props.locations.length !== 0){
       props.locations.forEach((locationData) => {

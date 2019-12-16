@@ -25,8 +25,9 @@ function Card(props){
                     <Collapse isOpen={open}>
                         <div>
                             {props.links.map((linkProp) => {
+                                console.log(linkProp);
                                 return (
-                                    <div key={linkProp.id}>
+                                    <div key={props.title-linkProp.id}>
                                         <Link to={linkProp.link}>{linkProp.name}</Link>
                                     </div>
                                     )

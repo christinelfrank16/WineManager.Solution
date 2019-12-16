@@ -10,7 +10,7 @@ import { getLocations } from './actions/location-actions';
 
 class App extends React.Component{
 
-  componentWillMount(){
+  componentDidMount(){
     const { dispatch } = this.props;
     dispatch(getLocations()).then(() => console.log(this.props));
   }
@@ -19,7 +19,7 @@ class App extends React.Component{
     return(
       <Layout>
         <Route exact path='/' render={() => <Home locations={this.props.locations} />} />
-        <Route path='/locations/:locationId?' component={Counter} />
+        <Route path='/locations/:locationId' render={(routerProps) => <Location locationId={routerProps.match.params.locationId}/>} />
         <Route path='/favorites/:favoriteId?' component={FetchData} />
         <Route path='/profile' />
       </Layout>
