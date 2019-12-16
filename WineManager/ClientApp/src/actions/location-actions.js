@@ -1,9 +1,7 @@
-import * as types from "./../constants/actionTypes";
-
-const initialState = {locations: []};
+import * as types from "../constants/actionTypes";
 
 export const postNewLocation = {
-    addLocation: locationData => async(dispatch, getState) => {
+    addLocation: locationData => async(dispatch) => {
         const url = `api/locations`;
         const response = await fetch(url, {
             method: 'POST',
@@ -13,9 +11,9 @@ export const postNewLocation = {
               },
             body: JSON.stringify(locationData)
         });
-        const locations = await response.json();
-        console.log(locations);
-        dispatch({type: types.ADD_LOCATION })
+        const newLocation = await response.json();
+        console.log(newLocation);
+        dispatch({type: types.ADD_LOCATION, newLocation })
     }
     
 }

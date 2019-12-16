@@ -32,10 +32,11 @@ namespace WineManager.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Location location)
+        public ActionResult<Location> Post([FromBody] Location location)
         {   
             _db.Locations.Add(location);
             _db.SaveChanges();
+            return location;
         }
     }
 }
