@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using WineManager.Models;
 
@@ -28,7 +29,7 @@ namespace WineManager.Controllers
         [HttpGet("{locationId:int}")]
         public ActionResult<Location> Get(int locationId)
         {
-            return _db.Locations.FirstOrDefault(location => location.LocationId == locationId);
+            return _db.Locations.Include(location => location.Slots).ThenInclude(slot => slot.WineItem).FirstOrDefault(location => location.LocationId == locationId);
         }
 
         // POST api/locations
