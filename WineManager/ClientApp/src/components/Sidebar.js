@@ -3,9 +3,9 @@ import ListData from './ListData';
 import AddWine from './AddWine'
 
 function Sidebar(){
-    const [showSidebar, toggleShow ] = useState(null);
-    const showList = 'showList';
-    const addWine = 'addWine'
+    const [showSidebar, changeShow ] = useState(null);
+    const showList = 'Show List';
+    const addWine = 'Add Wine'
     function renderSideButtons(){
         let buttons = [showList, addWine];
         if(buttons.indexOf(showSidebar) !== -1){
@@ -19,7 +19,7 @@ function Sidebar(){
             <div style={sideButtonStyle}>
                 {buttons.map((buttonName) => {
                     return(
-                        <button key={buttonName} id={buttonName} className='btn btn-secondary' type='button'>{buttonName}</button>
+                        <button key={buttonName} id={buttonName} className='btn btn-secondary' type='button' onClick={() => changeShow(buttonName)}>{buttonName}</button>
                     )
                 })}
             </div>
