@@ -4,3 +4,4 @@ export const GET_LOCATIONS = "GET_LOCATIONS";
 export const GET_LOCATIONDATA = "GET_LOCATIONDATA";
 export const GET_SLOTS = "GET_SLOTS";
 export const ADD_SLOT = "ADD_SLOT";
+export const ADD_WINE = "ADD_WINE";

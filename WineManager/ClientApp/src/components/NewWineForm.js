@@ -9,7 +9,7 @@ function NewWineForm(){
     }
     return(
         <div style={formStyle}>
-            <Form>
+            <Form id='wine-from-scratch'>
                  <FormGroup>
                      <Label for='name'>Name</Label>
                      <Input type='text' id='name' />

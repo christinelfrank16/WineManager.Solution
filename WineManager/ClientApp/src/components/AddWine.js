@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import $ from 'jquery';
 import { Form, Input, Button, InputGroup, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
 import NewWineForm from './NewWineForm';
+import { addWine } from '../actions/active-location-actions';
 
 function AddWine(props){
     const [contentToShow, updateContent ] = useState(null);
@@ -57,6 +59,22 @@ function AddWine(props){
         }
         props.updateSelectedSlot(position);
     }
+
+    function handleAddNewWineSubmit(event){
+        const { dispatch } = props;
+        event.preventDefault();
+        const newWineForm = $('#wine-search-content').find('#wine-from-scratch');
+        let name;
+        let type;
+        if(newWineForm.length > 0){
+            name = $(newWineForm).find('#name')[0].value;
+            type = $(newWineForm).find('#type')[0].value;
+            dispatch();
+        }
+        
+        
+    }
+
     return(
         <div style={pageWidth}>
             <h3 style={alignCenter}>Add Wine</h3>
@@ -92,7 +110,7 @@ function AddWine(props){
             <div id="wine-search-content" style={wineSearchContentStyle}>
                 {contentToShow}
             </div>
-            <Form style={addWineFormStyle} inline>
+            <Form style={addWineFormStyle} inline onSubmit={(event) => handleAddNewWineSubmit(event)}>
                 <Label className="mr-sm-2">SLOT</Label>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
@@ -106,7 +124,7 @@ function AddWine(props){
                     </InputGroupAddon>
                 </InputGroup>
                 <Input type="text" style={slotPositionFormStyle} className="mr-sm-2" value={parseSlotLocation.row} onChange={(event) => handleSlotUpdate(event, 'row')}/>
-                <Button color="primary">Add</Button>
+                <Button type='submit' color="primary">Add</Button>
             </Form>
         </div>
     )
