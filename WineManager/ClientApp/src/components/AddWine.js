@@ -1,9 +1,13 @@
 import React from 'react';
-import { Form, Input, Button } from 'reactstrap';
+import { Form, Input, Button, InputGroup, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
 
 function AddWine(){
     const pageWidth = {
-        width: 'inherit'
+        width: 'inherit',
+        height: '95%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
     }
     const alignCenter = {
         textAlign: 'center'
@@ -17,6 +21,17 @@ function AddWine(){
     const switchStyle = {
         marginLeft: '2vw'
     }
+    const addWineFormStyle = {
+        alignSelf: 'flex-end',
+        backgroundColor: 'lightgrey',
+        padding: '5px'
+    }
+    const slotPositionFormStyle = {
+        width: '4vw'
+    }
+    const wineSearchContentStyle = {
+        flexGrow: '2'
+    }
 
     return(
         <div style={pageWidth}>
@@ -25,7 +40,7 @@ function AddWine(){
                 <div>
                     <Input type="text" placeholder="Search" className="mr-sm-2" style={longInputStyle}/>
                     <Input type="number" placeholder="Vintage" className="mr-sm-2" style={shortInputStyle} />
-                    <Button variant="outline-success">Search</Button>
+                    <Button color="success">Search</Button>
                 </div>
                 <div style={switchStyle} className='custom-control custom-switch'>
                     <input
@@ -38,6 +53,24 @@ function AddWine(){
                     Search outside collection
                     </label>
                 </div>
+            </Form>
+            <div id="wine-search-content" style={wineSearchContentStyle}>
+            </div>
+            <Form style={addWineFormStyle} inline>
+                <Label className="mr-sm-2">SLOT</Label>
+                <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText>COL</InputGroupText>
+                    </InputGroupAddon>
+                </InputGroup>
+                <Input type="number" style={slotPositionFormStyle} className="mr-sm-2"/>
+                <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText>ROW</InputGroupText>
+                    </InputGroupAddon>
+                </InputGroup>
+                <Input type="number" style={slotPositionFormStyle} className="mr-sm-2"/>
+                <Button color="primary">Add</Button>
             </Form>
         </div>
     )
