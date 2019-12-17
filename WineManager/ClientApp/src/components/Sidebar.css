@@ -1,6 +1,10 @@
 #sidebar-container {
     min-height: 100vh;
-    max-width: 30vw;
-    background-color: lightblue;
+    max-width: 25vw;
     display: inline-block;
+    margin-right: 2vw;
+}
+
+#sidebar {
+    margin-right: 1vw;
 }

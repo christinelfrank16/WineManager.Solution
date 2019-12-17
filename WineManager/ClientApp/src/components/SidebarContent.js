@@ -37,7 +37,8 @@ function SidebarContent(props){
     }
 
     const sidebarStyle = {
-        transition: `width ${duration}ms`
+        transition: `width ${duration}ms`,
+        transition: `opacity ${duration}ms`
       }
 
     const sidebarTransitionStyles = {
@@ -47,13 +48,20 @@ function SidebarContent(props){
         exited: { width: 0 }
       }
 
+      const contentTransitionStyles = {
+        entering: { opacity: 0 },
+        entered: { opacity: 1 },
+        exiting: { opacity: 1 },
+        exited: { opacity: 0 }
+      }
+
     return (
         <Transition in={props.isOpen} timeout={duration}>
         {(state) => (
-            <span id='sidebar' style={{...sidebarStyle, ...sidebarTransitionStyles[state]}}>
+            <div id='sidebar' style={{...sidebarStyle, ...sidebarTransitionStyles[state], ...contentTransitionStyles[state]}}>
                 {renderSideButtons()}
                 {renderContent()}
-            </span>
+            </div>
         )}
         </Transition>
     )
