@@ -1,56 +1,19 @@
 import React from 'react';
 import WineGrid from './WineGrid';
-import { connect } from 'react-redux';
-import { getLocationById } from './../actions/active-location-actions';
 
-
-class Location extends React.Component {
-    constructor(props){
-        super(props);
-        this.createLocationGrid = this.createLocationGrid.bind(this);
-        this.state = {
-            wineGrid: [[]]
-        };
+function Location(props){
+    const locationStyle = {
+        width: '100%',
+        textAlign: 'center'
     }
-    componentDidMount(){
-        const { dispatch } = this.props;
-        dispatch(getLocationById(this.props.locationId)).then(() => this.setState({wineGrid: this.createLocationGrid()}));
-    }
-
-    createLocationGrid(){
-        let wineGrid = [];
-        console.log("active", this.props.activeLocation);
-        for(let i=0; i<this.props.activeLocation.xSlotCount; i++){
-            let row=[];
-            for(let j=0; j<this.props.activeLocation.ySlotCount; j++){
-                row.push({position: `${i}-${j}`, x: i, y: j, slotId: 0});
-            }
-            wineGrid.push(row);
-        }
-        return wineGrid;
-    }
-
+    console.log(props);
+    return(
+        <div style={locationStyle}>
+            <h1>{props.activeLocation.name}</h1>
     
-    render(){
-        const locationStyle = {
-            width: '100%',
-            textAlign: 'center'
-        }
-        return(
-            <div style={locationStyle}>
-                <h1>{this.props.activeLocation.name}</h1>
-        
-                <WineGrid grid={this.state.wineGrid} onSlotClick={this.props.onSlotClick}/>
-        
-            </div>
-        )
-    }
+            <WineGrid grid={props.wineGrid} onSlotClick={props.onSlotClick}/>
+        </div>
+    )
 }
 
-const mapStateToProps = state => {
-    return {
-        activeLocation: state.activeLocation
-    }
-}
-
-export default connect(mapStateToProps)(Location);
+export default Location;
