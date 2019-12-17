@@ -4,11 +4,16 @@ import Location from './Location';
 
 
 
-function LocationLayout(){
+function LocationLayout(props){
 
     return (
-        <div>
-
+        <div className="row">
+            <div className="col">
+                <Sidebar />
+            </div>
+            <div className="col">
+                <Location locationId={props.locationId}/>
+            </div>
         </div>
     )
 }

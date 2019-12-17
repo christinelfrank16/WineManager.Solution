@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
+import ListData from './ListData';
+import AddWine from './AddWine'
 
 function Sidebar(){
     const [showSidebar, toggleShow ] = useState(null);
     const showList = 'showList';
     const addWine = 'addWine'
-    function sideButtonsToShow(){
+    function renderSideButtons(){
         let buttons = [showList, addWine];
         if(buttons.indexOf(showSidebar) !== -1){
             buttons.splice(buttons.indexOf(showSidebar), 1)
         }
-        return buttons;
+        const sideButtonStyle = {
+            transform: 'rotate(90deg)',
+            float: 'left'
+        }
+        return (
+            <div style={sideButtonStyle}>
+                {buttons.map((buttonName) => {
+                    return(
+                        <button key={buttonName} id={buttonName} className='btn btn-secondary' type='button'>{buttonName}</button>
+                    )
+                })}
+            </div>
+        );
     }
     function renderContent(){
         if(showSidebar === showList){
@@ -20,9 +34,13 @@ function Sidebar(){
             return;
         }
     }
+    const sideBarStyle = {
+        maxWidth: '30vw'
+    }
     return (
-        <div>
-
+        <div style={sideBarStyle}>
+            {renderSideButtons()}
+            {renderContent()}
         </div>
     )
 }
