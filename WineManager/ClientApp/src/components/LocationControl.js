@@ -14,6 +14,7 @@ class LocationLayout extends React.Component{
         this.createLocationGrid = this.createLocationGrid.bind(this);
         this.handleSlotClick = this.handleSlotClick.bind(this);
         this.updateSidebar = this.updateSidebar.bind(this);
+        this.updateSelectedSlot = this.updateSelectedSlot.bind(this);
         this.state = {
             wineGrid: [[]],
             showSidebar: null,
@@ -40,10 +41,15 @@ class LocationLayout extends React.Component{
     updateSidebar(value){
         this.setState({showSidebar: value});
     }
+    updateSelectedSlot(value){
+        this.setState({selectedSlot: value});
+    }
 
     handleSlotClick(position, slotId){
         if(slotId === 0){
-            this.updateSidebar(v.ADD_WINE);
+            this.setState({showSidebar: v.ADD_WINE, selectedSlot: position});
+        } else {
+            this.setState({selectedSlot: position})
         }
     }
 
@@ -54,7 +60,7 @@ class LocationLayout extends React.Component{
         }
         return (
             <div style={layoutStyle}>
-                <Sidebar showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>
+                <Sidebar selectedSlot={this.state.selectedSlot} updateSelectedSlot={this.updateSelectedSlot} showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>
                 <Location activeLocation={this.props.activeLocation} wineGrid={this.state.wineGrid} onSlotClick={this.handleSlotClick}/>
             </div>
         )
