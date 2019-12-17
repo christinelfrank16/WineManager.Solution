@@ -45,8 +45,8 @@ function SidebarContent(props){
 
     const sidebarTransitionStyles = {
         entering: { width: 0 },
-        entered: { width: '30vw' },
-        exiting: { width: '30vw' },
+        entered: { width: '25vw' },
+        exiting: { width: '25vw' },
         exited: { width: 0 }
       }
 
