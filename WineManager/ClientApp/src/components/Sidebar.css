@@ -3,6 +3,7 @@
     max-width: 25vw;
     display: inline-block;
     margin-right: 2vw;
+    border-right: 1px solid rgb(212, 212, 212);
 }
 
 #sidebar {

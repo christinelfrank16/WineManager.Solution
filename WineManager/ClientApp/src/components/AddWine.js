@@ -7,7 +7,8 @@ function AddWine(){
         height: '95%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start'
+        justifyContent: 'center',
+        alignItems: 'flex-start'
     }
     const alignCenter = {
         textAlign: 'center'
@@ -22,7 +23,6 @@ function AddWine(){
         marginLeft: '2vw'
     }
     const addWineFormStyle = {
-        alignSelf: 'flex-end',
         backgroundColor: 'lightgrey',
         padding: '5px'
     }
