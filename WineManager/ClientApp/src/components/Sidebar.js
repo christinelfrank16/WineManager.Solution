@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SidebarIcon from './SidebarIcon';
 import SidebarContent from './SidebarContent';
 import './Sidebar.css';
 
-function Sidebar(){
-    
-    const [showSidebar, changeShow ] = useState(null);
-    
+function Sidebar(props){
+      
     function handleIconClick(open){
         if(open){
-            changeShow('open');
+            props.changeShow('open');
         } else {
-            changeShow(null);
+            props.changeShow(null);
         }
     }
     
     return (
         <div id='sidebar-container'>
-            <SidebarIcon onIconClick={handleIconClick} isOpen={showSidebar} />
-            <SidebarContent sideBarData={showSidebar} isOpen={showSidebar !== null ? true : false } onContentChange={changeShow} />
+            <SidebarIcon onIconClick={handleIconClick} isOpen={props.showSidebar} />
+            <SidebarContent sideBarData={props.showSidebar} isOpen={props.showSidebar !== null ? true : false } onContentChange={props.changeShow} />
         </div>
     )
 }

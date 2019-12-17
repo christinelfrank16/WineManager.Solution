@@ -12,7 +12,7 @@ function WineSlot(props){
         border: '1px solid darkgrey'
       };
     return (
-        <div style={tileStyle}>
+        <div style={tileStyle} onClick={() => props.onSlotClick(props.content.position, props.content.slotId)}>
             <p>{props.content.position}</p>
         </div>
     )

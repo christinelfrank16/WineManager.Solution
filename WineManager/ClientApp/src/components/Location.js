@@ -23,7 +23,7 @@ class Location extends React.Component {
         for(let i=0; i<this.props.activeLocation.xSlotCount; i++){
             let row=[];
             for(let j=0; j<this.props.activeLocation.ySlotCount; j++){
-                row.push({position: `${i}-${j}`, x: i, y: j});
+                row.push({position: `${i}-${j}`, x: i, y: j, slotId: 0});
             }
             wineGrid.push(row);
         }
@@ -40,7 +40,7 @@ class Location extends React.Component {
             <div style={locationStyle}>
                 <h1>{this.props.activeLocation.name}</h1>
         
-                <WineGrid grid={this.state.wineGrid}/>
+                <WineGrid grid={this.state.wineGrid} onSlotClick={this.props.onSlotClick}/>
         
             </div>
         )

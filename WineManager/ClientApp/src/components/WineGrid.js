@@ -10,7 +10,7 @@ function WineGrid(props){
           }
           return(
             <div style={rowStyle} key={rowIndex}>
-              {rowArray.map((content, colIndex) => <WineSlot content={content} key={`${rowIndex}-${colIndex}`} />)}
+              {rowArray.map((content, colIndex) => <WineSlot content={content} key={`${rowIndex}-${colIndex}`} onSlotClick={props.onSlotClick}/>)}
             </div>
           )
     }

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import ListData from './ListData';
-import AddWine from './AddWine'
+import AddWine from './AddWine';
+import variables from './../constants';
+const { v } = variables;
 
 function SidebarContent(props){
-    const showList = 'Show List';
-    const addWine = 'Add Wine';
+    const showList = v.SHOW_LIST;
+    const addWine = v.ADD_WINE;
     const duration = 500;
 
     function renderSideButtons(){
