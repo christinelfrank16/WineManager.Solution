@@ -30,16 +30,18 @@ class Location extends React.Component {
         return wineGrid;
     }
 
+    
     render(){
+        const locationStyle = {
+            width: '100%',
+            textAlign: 'center'
+        }
         return(
-            <div>
+            <div style={locationStyle}>
                 <h1>{this.props.activeLocation.name}</h1>
         
                 <WineGrid grid={this.state.wineGrid}/>
         
-                <p>Current count: <strong>{this.props.count}</strong></p>
-        
-                <button className="btn btn-primary" onClick={this.props.increment}>Increment</button>
             </div>
         )
     }

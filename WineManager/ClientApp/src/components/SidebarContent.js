@@ -6,7 +6,7 @@ import AddWine from './AddWine'
 function SidebarContent(props){
     const showList = 'Show List';
     const addWine = 'Add Wine';
-    const duration = 1000;
+    const duration = 500;
 
     function renderSideButtons(){
         let buttons = [showList, addWine];

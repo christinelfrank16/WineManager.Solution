@@ -6,7 +6,8 @@ import Location from './Location';
 
 function LocationLayout(props){
     const layoutStyle = {
-        display: 'flex'
+        display: 'flex',
+        width: '90vw'
     }
     return (
         <div style={layoutStyle}>

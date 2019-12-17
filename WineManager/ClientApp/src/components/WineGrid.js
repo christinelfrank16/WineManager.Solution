@@ -8,15 +8,19 @@ function WineGrid(props){
             margin: '0px',
             fontSize: '0'
           }
-          console.log(rowArray);
           return(
             <div style={rowStyle} key={rowIndex}>
               {rowArray.map((content, colIndex) => <WineSlot content={content} key={`${rowIndex}-${colIndex}`} />)}
             </div>
           )
     }
+    const gridStyle = {
+      display: 'inline-block',
+      margin: '0 auto',
+      paddingTop: '2vh'
+    }
     return (
-        <div>
+        <div style={gridStyle}>
             {props.grid.map((row, rowIndex) => {
                 return(makeRow(row, rowIndex));
             })}
