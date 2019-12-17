@@ -3,11 +3,11 @@ import { Table } from 'reactstrap';
 
 function ListData(props){
     const pageWidth = {
+        marginTop: '8px',
         width: 'inherit',
         height: '95%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'flex-start'
     }
     const alignCenter = {
@@ -18,7 +18,7 @@ function ListData(props){
     }
     return(
         <div style={pageWidth}>
-            <h3 style={alignCenter}>Add Wine</h3>
+            <h3 style={alignCenter}>Data List</h3>
             <Table hover>
                 <thead>
                     <tr>
