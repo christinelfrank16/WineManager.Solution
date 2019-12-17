@@ -5,15 +5,13 @@ import Location from './Location';
 
 
 function LocationLayout(props){
-
+    const layoutStyle = {
+        display: 'flex'
+    }
     return (
-        <div className="row">
-            <div className="col">
-                <Sidebar />
-            </div>
-            <div className="col">
-                <Location locationId={props.locationId}/>
-            </div>
+        <div style={layoutStyle}>
+            <Sidebar />
+            <Location locationId={props.locationId}/>
         </div>
     )
 }
