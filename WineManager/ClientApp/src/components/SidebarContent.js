@@ -37,8 +37,8 @@ function SidebarContent(props){
     }
 
     const sidebarStyle = {
-        transition: `width ${duration}ms`,
-        transition: `opacity ${duration}ms`
+        transitionProperty: 'width, opacity',
+        transitionDuration: `${duration}ms`
       }
 
     const sidebarTransitionStyles = {
