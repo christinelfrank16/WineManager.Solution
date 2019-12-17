@@ -42,8 +42,8 @@ function AddWine(props){
     }
 
     const parseSlotLocation = {
-        col: props.selectedSlot.substring(0, props.selectedSlot.indexOf("-")),
-        row: props.selectedSlot.substring(props.selectedSlot.indexOf("-")+1)
+        col: props.selectedSlot !== null ? props.selectedSlot.substring(0, props.selectedSlot.indexOf("-")) : '0',
+        row: props.selectedSlot !== null ? props.selectedSlot.substring(props.selectedSlot.indexOf("-")+1) : '0'
     }
 
     function handleSlotUpdate(event, axis){
@@ -57,7 +57,6 @@ function AddWine(props){
         }
         props.updateSelectedSlot(position);
     }
-    console.log(props);
     return(
         <div style={pageWidth}>
             <h3 style={alignCenter}>Add Wine</h3>
