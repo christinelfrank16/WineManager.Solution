@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import $ from 'jquery';
+import { connect } from 'react-redux';
 import { Form, Input, Button, InputGroup, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
 import NewWineForm from './NewWineForm';
 import { addWine } from '../actions/active-location-actions';
@@ -69,7 +70,19 @@ function AddWine(props){
         if(newWineForm.length > 0){
             name = $(newWineForm).find('#name')[0].value;
             type = $(newWineForm).find('#type')[0].value;
-            dispatch();
+            dispatch(addWine({
+                Name: name, 
+                Style: type,
+                Description: '',
+                Vintner: '',
+                Varietal: '',
+                Vintage: '',
+                Origin: '',
+                Rating: '',
+                Score: '',
+                Scorer: '',
+                Alcohol: ''
+            }, props.selectedSlot, props.locationId));
         }
         
         
@@ -129,4 +142,4 @@ function AddWine(props){
         </div>
     )
 }
-export default AddWine;
+export default connect()(AddWine);

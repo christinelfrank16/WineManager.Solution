@@ -32,10 +32,11 @@ namespace WineManager.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] WineItem wineItem)
+        public ActionResult<WineItem> Post([FromBody] WineItem wineItem)
         {   
             _db.WineItems.Add(wineItem);
             _db.SaveChanges();
+            return wineItem;
         }
     }
 }

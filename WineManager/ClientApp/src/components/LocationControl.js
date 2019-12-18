@@ -60,7 +60,7 @@ class LocationLayout extends React.Component{
         }
         return (
             <div style={layoutStyle}>
-                <Sidebar selectedSlot={this.state.selectedSlot} updateSelectedSlot={this.updateSelectedSlot} showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>
+                <Sidebar locationId={this.props.locationId} selectedSlot={this.state.selectedSlot} updateSelectedSlot={this.updateSelectedSlot} showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>
                 <Location activeLocation={this.props.activeLocation} wineGrid={this.state.wineGrid} onSlotClick={this.handleSlotClick}/>
             </div>
         )

@@ -17,19 +17,40 @@ export function getLocationById(id){
     }
 }
 
-export function addWine(wineData, slotLocation){
+export function addWine(wineData, slotLocation, locationId){
     return async(dispatch) => {
         const wineUrl = `api/wine`;
-        const wineResponse = await fetch(wineUrl, {
+        const response = await fetch(wineUrl, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-              },
+            },
             body: JSON.stringify(wineData)
         });
-        const newWine = await wineResponse.json();
-        const slotUrl = ``
-        dispatch({type: types.ADD_SLOT, newWine })
+        console.log(await response);
+        const newWine = await response.json();
+        addSlot(newWine.WineId, slotLocation, locationId);
+    }
+}
+
+export function addSlot(wineId, slotLocation, locationId){
+    return async(dispatch) => {
+        const slotUrl = `api/slots`;
+        const slotData = {
+            SlotPosition: slotLocation,
+            WineId: wineId,
+            LocationId: locationId
+        };
+        const slotResponse = await fetch(slotUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                },
+            body: JSON.stringify(slotData)
+        });
+        const newSlot = await slotResponse.json();
+        dispatch({type: types.ADD_SLOT, newSlot })
     }
 }
