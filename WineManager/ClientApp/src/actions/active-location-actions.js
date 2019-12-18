@@ -47,7 +47,7 @@ export function addSlot(wineId, slotLocation, locationId){
     return async(dispatch) => {
         const url = `api/slots`;
         const slotData = {
-            SlotPosition: slotLocation,
+            Position: slotLocation,
             WineItemId: wineId,
             LocationId: locationId
         };

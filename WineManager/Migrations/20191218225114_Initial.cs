@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WineManager.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,6 +23,19 @@ namespace WineManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Positions",
+                columns: table => new
+                {
+                    PositionId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Positions", x => x.PositionId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "WineItems",
                 columns: table => new
                 {
@@ -30,6 +43,7 @@ namespace WineManager.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
+                    Style = table.Column<string>(nullable: true),
                     Vintner = table.Column<string>(nullable: true),
                     Varietal = table.Column<string>(nullable: true),
                     Vintage = table.Column<int>(nullable: false),
@@ -69,6 +83,7 @@ namespace WineManager.Migrations
                 {
                     SlotId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    PositionId = table.Column<int>(nullable: false),
                     LocationId = table.Column<int>(nullable: false),
                     WineItemId = table.Column<int>(nullable: false)
                 },
@@ -80,6 +95,12 @@ namespace WineManager.Migrations
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "LocationId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Slots_Positions_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Positions",
+                        principalColumn: "PositionId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Slots_WineItems_WineItemId",
@@ -100,6 +121,11 @@ namespace WineManager.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Slots_PositionId",
+                table: "Slots",
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Slots_WineItemId",
                 table: "Slots",
                 column: "WineItemId");
@@ -115,6 +141,9 @@ namespace WineManager.Migrations
 
             migrationBuilder.DropTable(
                 name: "Locations");
+
+            migrationBuilder.DropTable(
+                name: "Positions");
 
             migrationBuilder.DropTable(
                 name: "WineItems");

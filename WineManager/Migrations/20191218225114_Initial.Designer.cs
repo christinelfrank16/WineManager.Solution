@@ -8,8 +8,8 @@ using WineManager.Models;
 namespace WineManager.Migrations
 {
     [DbContext(typeof(WineManagerContext))]
-    [Migration("20191216181024_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20191218225114_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,18 @@ namespace WineManager.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("WineManager.Models.Position", b =>
+                {
+                    b.Property<int>("PositionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("PositionId");
+
+                    b.ToTable("Positions");
+                });
+
             modelBuilder.Entity("WineManager.Models.Slot", b =>
                 {
                     b.Property<int>("SlotId")
@@ -55,11 +67,15 @@ namespace WineManager.Migrations
 
                     b.Property<int>("LocationId");
 
+                    b.Property<int>("PositionId");
+
                     b.Property<int>("WineItemId");
 
                     b.HasKey("SlotId");
 
                     b.HasIndex("LocationId");
+
+                    b.HasIndex("PositionId");
 
                     b.HasIndex("WineItemId");
 
@@ -85,6 +101,8 @@ namespace WineManager.Migrations
 
                     b.Property<string>("Scorer");
 
+                    b.Property<string>("Style");
+
                     b.Property<string>("Varietal");
 
                     b.Property<int>("Vintage");
@@ -109,6 +127,11 @@ namespace WineManager.Migrations
                     b.HasOne("WineManager.Models.Location", "Location")
                         .WithMany("Slots")
                         .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WineManager.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WineManager.Models.WineItem", "WineItem")

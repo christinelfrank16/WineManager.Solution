@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using WineManager.Models;
+using WineManager.ControllerModels;
 
 namespace WineManager.Controllers
 {
@@ -34,8 +35,16 @@ namespace WineManager.Controllers
 
         // POST api/slots
         [HttpPost]
-        public ActionResult<Slot> Post([FromBody] Slot newSlot)
+        public ActionResult<Slot> Post([FromBody] SlotData newData)
         {   
+            Console.WriteLine("test", newData);
+            Position positionObj = _db.Positions.FirstOrDefault(p => p.Value == newData.Position);
+            if(positionObj == null)
+            {
+                positionObj.Value = newData.Position;
+                _db.Positions.Add(positionObj);
+            }
+            Slot newSlot = new Slot(){LocationId = newData.LocationId, WineItemId = newData.WineItemId, PositionId = positionObj.PositionId};
             Console.WriteLine("test slot", newSlot);
             _db.Slots.Add(newSlot);
             _db.SaveChanges();

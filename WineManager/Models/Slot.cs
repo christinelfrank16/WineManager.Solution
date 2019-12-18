@@ -4,7 +4,7 @@ namespace WineManager.Models
 {
     public class Slot {
         public int SlotId { get; set; }
-        public string PositionId { get; }
+        public int PositionId { get; set; }
         public int LocationId { get; set; }
         public int WineItemId { get; set; }
 
