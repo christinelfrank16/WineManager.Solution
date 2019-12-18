@@ -19,8 +19,9 @@ export function getLocationById(id){
 
 export function addWine(wineData, slotLocation, locationId){
     return async(dispatch) => {
-        const wineUrl = `api/wine`;
-        const response = await fetch(wineUrl, {
+        const url = `api/wine`;
+        console.log(wineData);
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -28,9 +29,19 @@ export function addWine(wineData, slotLocation, locationId){
             },
             body: JSON.stringify(wineData)
         });
-        console.log(await response);
-        const newWine = await response.json();
-        addSlot(newWine.WineId, slotLocation, locationId);
+        const newWineItem = await response.json();
+        console.log(newWineItem);
+        //addSlot(newWine.WineId, slotLocation, locationId);
+    }
+}
+
+// test api call to wine db
+export function getWine(){
+    return async() => {
+        const url = `api/wine`;
+        const response = await fetch(url);
+        const wineList = response.json();
+        return wineList;
     }
 }
 

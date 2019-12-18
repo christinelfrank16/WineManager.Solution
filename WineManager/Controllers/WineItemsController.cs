@@ -31,12 +31,14 @@ namespace WineManager.Controllers
             return _db.WineItems.FirstOrDefault(wineItem => wineItem.WineItemId == wineItemId);
         }
 
+        // POST api/wine
         [HttpPost]
-        public ActionResult<WineItem> Post([FromBody] WineItem wineItem)
-        {   
-            _db.WineItems.Add(wineItem);
+        public ActionResult<WineItem> Post([FromBody] WineItem newWine)
+        {   Console.WriteLine("Test item is below");
+            Console.WriteLine(newWine);
+            _db.WineItems.Add(newWine);
             _db.SaveChanges();
-            return wineItem;
+            return newWine;
         }
     }
 }

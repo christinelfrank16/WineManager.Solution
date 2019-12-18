@@ -3,7 +3,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Form, Input, Button, InputGroup, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
 import NewWineForm from './NewWineForm';
-import { addWine } from '../actions/active-location-actions';
+import { addWine, getWine } from '../actions/active-location-actions';
 
 function AddWine(props){
     const [contentToShow, updateContent ] = useState(null);
@@ -70,19 +70,21 @@ function AddWine(props){
         if(newWineForm.length > 0){
             name = $(newWineForm).find('#name')[0].value;
             type = $(newWineForm).find('#type')[0].value;
-            dispatch(addWine({
-                Name: name, 
+            const newWineItem = {
+                Name: name,
                 Style: type,
-                Description: '',
-                Vintner: '',
-                Varietal: '',
-                Vintage: '',
-                Origin: '',
-                Rating: '',
-                Score: '',
-                Scorer: '',
-                Alcohol: ''
-            }, props.selectedSlot, props.locationId));
+                // Description: 'p',
+                // Vintner: 'p',
+                // Varietal: 'p',
+                // Vintage: 0,
+                // Origin: 'p',
+                // Rating: 'p',
+                // Score: 0,
+                // Scorer: 'p',
+                // Alcohol: 0.0
+            }
+            //console.log(dispatch(getWine()));
+            dispatch(addWine(newWineItem, props.selectedSlot, props.locationId));
         }
         
         

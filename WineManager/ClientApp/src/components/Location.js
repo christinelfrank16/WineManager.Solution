@@ -6,7 +6,6 @@ function Location(props){
         width: '100%',
         textAlign: 'center'
     }
-    console.log(props);
     return(
         <div style={locationStyle}>
             <h1>{props.activeLocation.name}</h1>
