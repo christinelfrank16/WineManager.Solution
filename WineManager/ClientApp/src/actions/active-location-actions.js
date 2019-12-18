@@ -20,7 +20,6 @@ export function getLocationById(id){
 export function addWine(wineData, slotLocation, locationId){
     return async(dispatch) => {
         const url = `api/wine`;
-        console.log(wineData);
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -30,8 +29,7 @@ export function addWine(wineData, slotLocation, locationId){
             body: JSON.stringify(wineData)
         });
         const newWineItem = await response.json();
-        console.log(newWineItem);
-        //addSlot(newWine.WineId, slotLocation, locationId);
+        dispatch(addSlot(newWineItem.wineItemId, slotLocation, locationId));
     }
 }
 
@@ -47,13 +45,14 @@ export function getWine(){
 
 export function addSlot(wineId, slotLocation, locationId){
     return async(dispatch) => {
-        const slotUrl = `api/slots`;
+        const url = `api/slots`;
         const slotData = {
             SlotPosition: slotLocation,
-            WineId: wineId,
+            WineItemId: wineId,
             LocationId: locationId
         };
-        const slotResponse = await fetch(slotUrl, {
+        console.log(slotData);
+        const slotResponse = await fetch(url, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -61,7 +60,7 @@ export function addSlot(wineId, slotLocation, locationId){
                 },
             body: JSON.stringify(slotData)
         });
-        const newSlot = await slotResponse.json();
-        dispatch({type: types.ADD_SLOT, newSlot })
+        const newSlotItem = await slotResponse.json();
+        dispatch({ type: types.ADD_SLOT, newSlotItem })
     }
 }

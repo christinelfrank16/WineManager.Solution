@@ -6,8 +6,12 @@ export default (state = {}, action) => {
 
     switch(action.type){
         case c.ADD_SLOT:
-            newState = state.slice();
-            newState.push(action.newLocation);
+            console.log(action);
+            let newSlotsArray = state.slots.slice();
+            newSlotsArray.push(action.newSlotItem);
+            newState = Object.assign({}, state, {
+                slots: newSlotsArray
+            });
             return newState;
 
         case c.GET_LOCATIONDATA:
