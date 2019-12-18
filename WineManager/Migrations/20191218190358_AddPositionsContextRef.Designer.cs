@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WineManager.Models;
 
 namespace WineManager.Migrations
 {
     [DbContext(typeof(WineManagerContext))]
-    partial class WineManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20191218190358_AddPositionsContextRef")]
+    partial class AddPositionsContextRef
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

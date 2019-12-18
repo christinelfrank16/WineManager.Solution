@@ -34,12 +34,12 @@ namespace WineManager.Controllers
 
         // POST api/slots
         [HttpPost]
-        public ActionResult<Slot> Post([FromBody] Slot slot)
+        public ActionResult<Slot> Post([FromBody] Slot newSlot)
         {   
-            Console.WriteLine("test slot", slot);
-            _db.Slots.Add(slot);
+            Console.WriteLine("test slot", newSlot);
+            _db.Slots.Add(newSlot);
             _db.SaveChanges();
-            return slot;
+            return newSlot;
         }
     }
 }

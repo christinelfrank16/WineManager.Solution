@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WineManager.Models;
 
 namespace WineManager.Migrations
 {
     [DbContext(typeof(WineManagerContext))]
-    partial class WineManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20191218190130_AddPositionTable")]
+    partial class AddPositionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,7 @@ namespace WineManager.Migrations
 
                     b.HasKey("PositionId");
 
-                    b.ToTable("Positions");
+                    b.ToTable("Position");
                 });
 
             modelBuilder.Entity("WineManager.Models.Slot", b =>

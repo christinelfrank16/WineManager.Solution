@@ -10,5 +10,7 @@ namespace WineManager.Models
       public DbSet<Slot> Slots { get; set; }
       public DbSet<Location> Locations { get; set; }
       public DbSet<Favorite> Favorites { get; set; }
+
+      public DbSet<Position> Positions { get; set; }
   }
 }
