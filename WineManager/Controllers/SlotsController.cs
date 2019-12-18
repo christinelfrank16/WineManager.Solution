@@ -41,14 +41,15 @@ namespace WineManager.Controllers
             Position positionObj = _db.Positions.FirstOrDefault(p => p.Value == newData.Position);
             if(positionObj == null)
             {
+                positionObj = new Position();
                 positionObj.Value = newData.Position;
                 _db.Positions.Add(positionObj);
             }
             Slot newSlot = new Slot(){LocationId = newData.LocationId, WineItemId = newData.WineItemId, PositionId = positionObj.PositionId};
-            Console.WriteLine("test slot", newSlot);
             _db.Slots.Add(newSlot);
             _db.SaveChanges();
-            return newSlot;
+            Console.WriteLine("test slot", newSlot);
+            return _db.Slots.Include(slot => slot.Position).Include(slot => slot.WineItem).FirstOrDefault(slot => slot.SlotId == newSlot.SlotId); ;
         }
     }
 }
