@@ -29,7 +29,7 @@ namespace WineManager.Controllers
         [HttpGet("{locationId:int}")]
         public ActionResult<Location> Get(int locationId)
         {
-            return _db.Locations.Include(location => location.Slots).ThenInclude(slot => slot.WineItem).FirstOrDefault(location => location.LocationId == locationId);
+            return _db.Locations.Include(location => location.Slots).ThenInclude(slot => slot.WineItem).Include(location => location.Slots).ThenInclude(slot => slot.Position).FirstOrDefault(location => location.LocationId == locationId);
         }
 
         // POST api/locations
