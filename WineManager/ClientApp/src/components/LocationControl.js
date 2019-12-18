@@ -31,6 +31,7 @@ class LocationLayout extends React.Component{
         for(let i=0; i<this.props.activeLocation.xSlotCount; i++){
             let row=[];
             for(let j=0; j<this.props.activeLocation.ySlotCount; j++){
+                if(this.state.activeLocation.)
                 row.push({position: `${i}-${j}`, x: i, y: j, slotId: 0});
             }
             wineGrid.push(row);

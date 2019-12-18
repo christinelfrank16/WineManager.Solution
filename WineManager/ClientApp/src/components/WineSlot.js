@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaWineBottle } from 'react-icons';
 
 function WineSlot(props){
     var tileStyle = {
@@ -11,6 +12,7 @@ function WineSlot(props){
         margin: '0px',
         border: '1px solid darkgrey'
       };
+      console.log(props.content);
     return (
         <div style={tileStyle} onClick={() => props.onSlotClick(props.content.position, props.content.slotId)}>
             <p>{props.content.position}</p>
