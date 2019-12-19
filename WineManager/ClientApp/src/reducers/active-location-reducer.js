@@ -6,7 +6,7 @@ export default (state = {}, action) => {
 
     switch(action.type){
         case c.ADD_SLOT:
-            console.log(action);
+            console.log("reducer", state, action);
             let newSlotsArray = state.slots.slice();
             newSlotsArray.push(action.newSlotItem);
             newState = Object.assign({}, state, {

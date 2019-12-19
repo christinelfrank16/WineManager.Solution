@@ -15,6 +15,7 @@ class LocationLayout extends React.Component{
         this.handleSlotClick = this.handleSlotClick.bind(this);
         this.updateSidebar = this.updateSidebar.bind(this);
         this.updateSelectedSlot = this.updateSelectedSlot.bind(this);
+        this.updateWineGrid = this.updateWineGrid.bind(this);
         this.state = {
             wineGrid: [[]],
             showSidebar: null,
@@ -26,18 +27,7 @@ class LocationLayout extends React.Component{
         dispatch(getLocationById(this.props.locationId)).then(() => this.setState({wineGrid: this.createLocationGrid()}));
     }
     componentDidUpdate(){
-        let newWineGrid = this.state.wineGrid.slice();
-        console.log(this.state.activeLocation);
-        if(this.state.activeLocation){
-            console.log("in if state")
-            let slots = this.state.activeLocation.slots;
-            slots.forEach(slot => {
-                let x = slot.position.value.substring(0, slot.position.value.indexOf('-'));
-                let y = slot.position.value.substring(slot.position.value.indexOf('-')+1);
-                newWineGrid[x][y].slotId = slot.slotId;
-            });
-            this.setState({wineGrid: newWineGrid});
-        }
+        // this.updateWineGrid();
     }
 
     createLocationGrid(){
@@ -73,12 +63,26 @@ class LocationLayout extends React.Component{
         }
     }
 
+    updateWineGrid(){
+        let newWineGrid = this.state.wineGrid.slice();
+        if (newWineGrid[0].length > 0 && this.props.activeLocation){
+            console.log("in if state", newWineGrid.length)
+            let slots = this.props.activeLocation.slots;
+            slots.forEach(slot => {
+                let x = slot.position.value.substring(0, slot.position.value.indexOf('-'));
+                let y = slot.position.value.substring(slot.position.value.indexOf('-')+1);
+                console.log(x, y, newWineGrid[x][y]);
+                newWineGrid[x][y].slotId = slot.slotId;
+            });
+            this.setState({wineGrid: newWineGrid});
+        }
+    }
+
     render(){
         const layoutStyle = {
             display: 'flex',
             width: '90vw'
         }
-        console.log("props", this.props);
         return (
             <div style={layoutStyle}>
                 <Sidebar locationId={this.props.locationId} selectedSlot={this.state.selectedSlot} updateSelectedSlot={this.updateSelectedSlot} showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>
