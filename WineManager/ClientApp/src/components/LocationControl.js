@@ -25,14 +25,33 @@ class LocationLayout extends React.Component{
         const { dispatch } = this.props;
         dispatch(getLocationById(this.props.locationId)).then(() => this.setState({wineGrid: this.createLocationGrid()}));
     }
+    componentDidUpdate(){
+        let newWineGrid = this.state.wineGrid.slice();
+        console.log(this.state.activeLocation);
+        if(this.state.activeLocation){
+            console.log("in if state")
+            let slots = this.state.activeLocation.slots;
+            slots.forEach(slot => {
+                let x = slot.position.value.substring(0, slot.position.value.indexOf('-'));
+                let y = slot.position.value.substring(slot.position.value.indexOf('-')+1);
+                newWineGrid[x][y].slotId = slot.slotId;
+            });
+            this.setState({wineGrid: newWineGrid});
+        }
+    }
 
     createLocationGrid(){
         let wineGrid = [];
+        let slots = this.props.activeLocation.slots;
         for(let i=0; i<this.props.activeLocation.xSlotCount; i++){
             let row=[];
             for(let j=0; j<this.props.activeLocation.ySlotCount; j++){
-                if(this.state.activeLocation.)
-                row.push({position: `${i}-${j}`, x: i, y: j, slotId: 0});
+                let slot = slots.find((slot) => slot.position.value === `${i}-${j}`);
+                if(slot){
+                    row.push({ position: `${i}-${j}`, x: i, y: j, slotId: slot.slotId });
+                } else {
+                    row.push({position: `${i}-${j}`, x: i, y: j, slotId: 0});
+                }
             }
             wineGrid.push(row);
         }
@@ -59,6 +78,7 @@ class LocationLayout extends React.Component{
             display: 'flex',
             width: '90vw'
         }
+        console.log("props", this.props);
         return (
             <div style={layoutStyle}>
                 <Sidebar locationId={this.props.locationId} selectedSlot={this.state.selectedSlot} updateSelectedSlot={this.updateSelectedSlot} showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>

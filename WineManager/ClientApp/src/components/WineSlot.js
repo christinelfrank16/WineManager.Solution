@@ -1,23 +1,28 @@
 import React from 'react';
-import { FaWineBottle } from 'react-icons';
+import wineBottle from './../assets/wineBottle.png';
 
 function WineSlot(props){
-    var tileStyle = {
-        width: '50px',
-        maxHeight: '50px',
-        minHeight: '49px',
-        backgroundColor: 'grey',
-        display: 'inline-block',
-        padding: '0px',
-        margin: '0px',
-        border: '1px solid darkgrey'
-      };
+    
       console.log(props.content);
+      function tileStyleUpdate(){
+          let tileStyle = {
+              display: 'inline-block',
+              width: '50px',
+              height: '50px',
+              padding: '0px',
+              margin: '0px',
+              backgroundColor: 'grey',
+              border: '1px solid darkgrey',
+          };
+          if(props.content.slotId !== 0){
+              tileStyle = { ...tileStyle, backgroundImage: `url(${wineBottle})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover'}
+          }
+          return tileStyle;
+      }
     return (
-        <div style={tileStyle} onClick={() => props.onSlotClick(props.content.position, props.content.slotId)}>
-            <p>{props.content.position}</p>
-        </div>
-    )
+        <div style={tileStyleUpdate()} onClick={() => props.onSlotClick(props.content.position, props.content.slotId)}>
+            {null}
+        </div>)
 }
 
 export default WineSlot;
