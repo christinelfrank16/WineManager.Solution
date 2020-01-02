@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Form, Input, Button, InputGroup, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
 import NewWineForm from './NewWineForm';
+import SearchResults from './SearchResults';
 import { addWine, getWine } from '../actions/active-location-actions';
 
 function AddWine(props){
@@ -35,7 +36,13 @@ function AddWine(props){
         width: '4vw'
     }
     const wineSearchContentStyle = {
-        flexGrow: '2'
+        flexGrow: '2',
+        width: '90%'
+    }
+    const noResultsFound = {
+        marginTop: '20%',
+        textAlign: 'center',
+        width: 'inherit'
     }
 
     function onCreateFromScratchClick(event){
@@ -66,17 +73,21 @@ function AddWine(props){
     function handleAddNewWineSubmit(event){
         const { dispatch } = props;
         event.preventDefault();
-        const newWineForm = $('#wine-search-content').find('#wine-from-scratch');
-        let name;
-        let type;
-        if(newWineForm.length > 0){
-            name = $(newWineForm).find('#name')[0].value;
-            type = $(newWineForm).find('#type')[0].value;
-            const newWineItem = {
-                Name: name,
-                Style: type
+        const createFromScratch = $('#createNewWine')[0].checked;
+        const searchOutsideCollection = $('#searchOutsideCollection')[0].checked;
+        if(createFromScratch){
+            const newWineForm = $('#wine-search-content').find('#wine-from-scratch');
+            let name;
+            let type;
+            if(newWineForm.length > 0){
+                name = $(newWineForm).find('#name')[0].value;
+                type = $(newWineForm).find('#type')[0].value;
+                const newWineItem = {
+                    Name: name,
+                    Style: type
+                }
+                dispatch(addWine(newWineItem, props.selectedSlot, props.locationId));
             }
-            dispatch(addWine(newWineItem, props.selectedSlot, props.locationId));
         }
     }
 
@@ -103,15 +114,9 @@ function AddWine(props){
 
     function showSearchResults(list){
         if(list.length > 0){
-            const formattedList = list.map((wineItem) => {
-                const { name, style } = wineItem;
-                return (
-                    <li>{name} - {style}</li>
-                )
-            });
-            updateContent(<ul>Results:{formattedList}</ul>);
+            updateContent(<SearchResults list={list} />);
         } else {
-            updateContent("Sorry, no items were found");
+            updateContent(<div style={noResultsFound}><p>Sorry, no items were found</p></div>);
         }
     }
 
