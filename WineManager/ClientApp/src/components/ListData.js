@@ -33,8 +33,7 @@ function ListData(props){
     }
     function updateHighlightOnClick(event){
         const location = event.target.closest("tr").id;
-        console.log(location);
-        console.log(props.selectedSlot);
+        props.updateSelectedSlot(location);
     }
     return(
         <div style={pageWidth}>

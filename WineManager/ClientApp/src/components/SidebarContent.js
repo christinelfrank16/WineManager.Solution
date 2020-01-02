@@ -30,7 +30,7 @@ function SidebarContent(props){
     
     function renderContent(){
         if(props.sideBarData === showList){
-            return <ListData selectedSlot={props.selectedSlot} slots={props.slots}/>;
+            return <ListData selectedSlot={props.selectedSlot} slots={props.slots} updateSelectedSlot={props.updateSelectedSlot}/>;
         } else if (props.sideBarData === addWine){
             return <AddWine locationId={props.locationId} selectedSlot={props.selectedSlot} updateSelectedSlot={props.updateSelectedSlot}/>;
         } else {
