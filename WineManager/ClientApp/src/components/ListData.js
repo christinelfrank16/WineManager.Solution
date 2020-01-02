@@ -17,7 +17,6 @@ function ListData(props){
         backgroundColor: 'lightblue'
     }
     function generateBodyRows(){
-        console.log(props);
         return props.slots.map((slot) => {
             const { slotId, wineItem, position } = slot;
             const { name, description, style } = wineItem;

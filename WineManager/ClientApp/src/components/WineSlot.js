@@ -3,7 +3,6 @@ import wineBottle from './../assets/wineBottle.png';
 
 function WineSlot(props){
     
-      console.log(props.content);
       function tileStyleUpdate(){
           let tileStyle = {
               display: 'inline-block',
