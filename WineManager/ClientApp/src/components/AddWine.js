@@ -40,7 +40,9 @@ function AddWine(props){
 
     function onCreateFromScratchClick(event){
         if(event.target.checked){
-            updateContent(<NewWineForm />)
+            updateContent(<NewWineForm />);
+        } else {
+            updateContent();
         }
     }
 
