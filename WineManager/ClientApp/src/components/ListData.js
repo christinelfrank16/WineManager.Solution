@@ -13,8 +13,28 @@ function ListData(props){
     const alignCenter = {
         textAlign: 'center'
     }
+    const highlightRow = {
+        backgroundColor: 'lightblue'
+    }
     function generateBodyRows(){
-
+        console.log(props);
+        return props.slots.map((slot) => {
+            const { slotId, wineItem, position } = slot;
+            const { name, description, style } = wineItem;
+            const { value } = position;
+            return (
+                <tr id={value} key={slotId} style={props.selectedSlot === value ? highlightRow : null } onClick={(event) => updateHighlightOnClick(event)}>
+                    <td>{name}</td>
+                    <td>{style}</td>
+                    <td>{value}</td>
+                </tr>
+            )
+        })
+    }
+    function updateHighlightOnClick(event){
+        const location = event.target.closest("tr").id;
+        console.log(location);
+        console.log(props.selectedSlot);
     }
     return(
         <div style={pageWidth}>

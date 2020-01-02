@@ -66,7 +66,6 @@ class LocationLayout extends React.Component{
     updateWineGrid(){
         let newWineGrid = this.state.wineGrid.slice();
         if (newWineGrid[0].length > 0 && this.props.activeLocation){
-            console.log("in if state", newWineGrid.length)
             let slots = this.props.activeLocation.slots;
             slots.forEach(slot => {
                 let x = slot.position.value.substring(0, slot.position.value.indexOf('-'));
@@ -85,7 +84,7 @@ class LocationLayout extends React.Component{
         }
         return (
             <div style={layoutStyle}>
-                <Sidebar locationId={this.props.locationId} selectedSlot={this.state.selectedSlot} updateSelectedSlot={this.updateSelectedSlot} showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>
+                <Sidebar locationId={this.props.locationId} slots={this.props.activeLocation.slots} selectedSlot={this.state.selectedSlot} updateSelectedSlot={this.updateSelectedSlot} showSidebar={this.state.showSidebar} changeShow={this.updateSidebar}/>
                 <Location activeLocation={this.props.activeLocation} wineGrid={this.state.wineGrid} onSlotClick={this.handleSlotClick}/>
             </div>
         )
