@@ -11,7 +11,7 @@ function SearchResults(props) {
         <ListGroup>
             {props.list.map((item) => {
                 const { wineItemId, name, style } = item;
-                return(<ListGroupItem key={wineItemId} tag="button" action>{name} - {style}</ListGroupItem>)
+                return(<ListGroupItem key={wineItemId} tag="button" action onClick={() => props.updateWineSelection(item)}>{name} - {style}</ListGroupItem>)
             })}
         </ListGroup>
       </div>

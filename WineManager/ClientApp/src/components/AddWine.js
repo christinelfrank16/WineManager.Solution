@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { Form, Input, Button, InputGroup, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
 import NewWineForm from './NewWineForm';
 import SearchResults from './SearchResults';
-import { addWine, getWine } from '../actions/active-location-actions';
+import { addWine, getWine, addSlot } from '../actions/active-location-actions';
 
 function AddWine(props){
     const [contentToShow, updateContent ] = useState(null);
+    const [selectedWineToAdd, updateWineSelection] = useState(null);
     const pageWidth = {
         width: 'inherit',
         height: '95%',
@@ -88,6 +89,10 @@ function AddWine(props){
                 }
                 dispatch(addWine(newWineItem, props.selectedSlot, props.locationId));
             }
+        } else if(!searchOutsideCollection){
+            if(selectedWineToAdd){
+                dispatch(addSlot(selectedWineToAdd.wineItemId, props.selectedSlot, props.locationId));
+            }
         }
     }
 
@@ -114,7 +119,7 @@ function AddWine(props){
 
     function showSearchResults(list){
         if(list.length > 0){
-            updateContent(<SearchResults list={list} />);
+            updateContent(<SearchResults list={list} updateWineSelection={updateWineSelection}/>);
         } else {
             updateContent(<div style={noResultsFound}><p>Sorry, no items were found</p></div>);
         }
