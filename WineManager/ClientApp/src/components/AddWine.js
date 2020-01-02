@@ -3,7 +3,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Form, Input, Button, InputGroup, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
 import NewWineForm from './NewWineForm';
-import { addWine } from '../actions/active-location-actions';
+import { addWine, getWine } from '../actions/active-location-actions';
 
 function AddWine(props){
     const [contentToShow, updateContent ] = useState(null);
@@ -78,17 +78,50 @@ function AddWine(props){
             }
             dispatch(addWine(newWineItem, props.selectedSlot, props.locationId));
         }
-        
-        
+    }
+
+    function handleWineSearch(event){
+        const { dispatch } = props;
+        event.preventDefault();
+        const createFromScratch = $('#createNewWine')[0].checked;
+        const searchOutsideCollection = $('#searchOutsideCollection')[0].checked;
+        if(!createFromScratch){ // only perform search when create-from-scratch is NOT checked
+            const searchValue = $('#search-value')[0].value.toLowerCase();
+            const vintage = $('#vintage')[0].value;
+            if(searchOutsideCollection){
+
+            } else {
+                dispatch(getWine()).then((wineList) => {
+                    if(searchValue){
+                        wineList = wineList.filter((item) => item.name.toLowerCase().includes(searchValue));
+                    }
+                    showSearchResults(wineList)
+                });
+            }
+        }
+    }
+
+    function showSearchResults(list){
+        if(list.length > 0){
+            const formattedList = list.map((wineItem) => {
+                const { name, style } = wineItem;
+                return (
+                    <li>{name} - {style}</li>
+                )
+            });
+            updateContent(<ul>Results:{formattedList}</ul>);
+        } else {
+            updateContent("Sorry, no items were found");
+        }
     }
 
     return(
         <div style={pageWidth}>
             <h3 style={alignCenter}>Add Wine</h3>
-            <Form inline>
+            <Form inline onSubmit={(event) => handleWineSearch(event)}>
                 <div>
-                    <Input type="text" placeholder="Search" className="mr-sm-2" style={longInputStyle}/>
-                    <Input type="number" placeholder="Vintage" className="mr-sm-2" style={shortInputStyle} />
+                    <Input id="search-value" type="text" placeholder="Search" className="mr-sm-2" style={longInputStyle}/>
+                    <Input id="vintage" type="number" placeholder="Vintage" className="mr-sm-2" style={shortInputStyle} />
                     <Button color="success">Search</Button>
                 </div>
                 <div style={switchStyle} className='custom-control custom-switch'>

@@ -51,7 +51,6 @@ export function addSlot(wineId, slotLocation, locationId){
             WineItemId: wineId,
             LocationId: locationId
         };
-        console.log(slotData);
         const slotResponse = await fetch(url, {
             method: 'POST',
             headers: {
